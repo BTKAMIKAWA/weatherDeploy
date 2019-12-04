@@ -1,0 +1,13 @@
+.header-db {
+    background-image: url("https://news.images.itv.com/image/file/1921475/stream_img.jpg") ;
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+}
+
+
+
+.date {
+    width: 500px;
+    margin: 0 auto;
+    padding: 0;
+}

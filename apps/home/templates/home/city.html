@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Database</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+  </head>
+<body>
+    <nav class="navbar navbar-light header-db" style="background-color: #e3f2fd">
+        <a class="navbar-brand" style="color: black" href="/">MyWeather</a>
+        <div style="padding-top:15px">
+            <a class="nav-item nav-link" style="color: black" href="/search_db">View All</a>
+        </div>
+    </nav>
+
+    <div style="text-align: center; margin:0px">
+        <h2>Database of all searches made by users</h2>
+    </div><br>
+
+    <div class="form-popup" id="myForm">
+      <form action="/filter_city" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group date">
+          <input name="city" type="text" class="form-control input" style="width: 400px; display: inline-block" placeholder="city" required>
+          <button type="submit" class="btn btn-primary button" style="margin-bottom: 3px;">Filter</button>
+        </div>
+      </form>
+    </div> 
+
+    <table style="width: 1000px; margin: 0 auto" class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col">Zipcode</th>
+          <th scope="col">Temperature at Time</th>
+          <th scope="col">Description</th>
+          <th scope="col">Date & Time of Search</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for city in city %}
+        <tr>
+          <td>{{ city.city }}</td>
+          <td>{{ city.state }}</td>
+          <td>{{ city.zipcode }}</td>
+          <td>{{ city.temperature }}° F</td>
+          <td>{{ city.description }}</td>
+          <td>{{ city.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+</body>
+</html>
